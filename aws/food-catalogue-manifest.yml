@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: foodcatalogueapp
-          image: vipskuttu/food-catalogue-service:1
+          image: vipskuttu/food-catalogue-service:2
           imagePullPolicy: Always
           ports:
             - containerPort: 9092 #
