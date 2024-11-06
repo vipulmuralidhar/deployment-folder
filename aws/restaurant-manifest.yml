@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: restaurantapp
-          image: vipskuttu/restaurant-listing-service:3
+          image: vipskuttu/restaurant-listing-service:2
           imagePullPolicy: Always
           ports:
             - containerPort: 9091
