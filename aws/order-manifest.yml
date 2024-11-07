@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orderapp
-          image: vipskuttu/order-service:2
+          image: vipskuttu/order-service:3
           imagePullPolicy: Always
           ports:
             - containerPort: 9094
