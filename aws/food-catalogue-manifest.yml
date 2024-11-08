@@ -15,36 +15,11 @@ spec:
         app: foodcatalogueapp
     spec:
       containers:
-<<<<<<< HEAD
       - name: foodcatalogueapp
         image: vipskuttu/food-catalogue-service:2
         imagePullPolicy: Always
         ports:
         - containerPort: 9092 #
-=======
-        - name: foodcatalogueapp
-          image: vipskuttu/food-catalogue-service:2
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9092 #
-
-          env: # Environment variables supplied to the Pod
-            - name: SPRING_DATASOURCE_USERNAME # Name of the environment variable
-              valueFrom: # Get the value of environment variable from kubernetes secrets
-                secretKeyRef:
-                  name: secret
-                  key: mysql-username
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: mysql-password
-            - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: foodcataloguedb_url
->>>>>>> 7254f97e97d244abc3426240c31323eec38df6ea
 
         env:
         # Environment variables supplied to the Pod
