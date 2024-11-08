@@ -13,22 +13,21 @@ spec:
         app: orderapp
     spec:
       containers:
-        - name: orderapp
-          image: vipskuttu/order-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9094
-          env:
-            - name: JAVA_TOOL_OPTIONS
-              value: "-Djdk.tls.client.protocols=TLSv1.2" # this is how you will be adding a certificate which is capable enough to make the handshake possible
-            - name: SPRING_DATA_MONGODB_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: orderdb_url
-            - name: SPRING_DATA_MONGODB_DATABASE
-              value: "orderdb"
-
+      - name: orderapp
+        image: vipskuttu/order-service:3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9094
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Djdk.tls.client.protocols=TLSv1.2" # this is how you will be adding a certificate which is capable enough to make the handshake possible
+        - name: SPRING_DATA_MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: orderdb_url
+        - name: SPRING_DATA_MONGODB_DATABASE
+          value: "orderdb"
 ---
 apiVersion: v1
 kind: Service
@@ -38,6 +37,6 @@ spec:
   selector:
     app: orderapp
   ports:
-    - protocol: TCP
-      port: 9094
-      targetPort: 9094
+  - protocol: TCP
+    port: 9094
+    targetPort: 9094

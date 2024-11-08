@@ -15,27 +15,27 @@ spec:
         app: userapp
     spec:
       containers:
-        - name: userapp
-          image: vipskuttu/user-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9093
-          env:
-            - name: SPRING_DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: mysql-username
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: mysql-password
-            - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: userdb_url
+      - name: userapp
+        image: vipskuttu/user-service:2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9093
+        env:
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: mysql-username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: mysql-password
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: userdb_url
 ---
 apiVersion: v1
 kind: Service
@@ -43,9 +43,8 @@ metadata:
   name: user-service
 spec:
   ports:
-    - protocol: TCP
-      port: 9093
-      targetPort: 9093
+  - protocol: TCP
+    port: 9093
+    targetPort: 9093
   selector:
     app: userapp
- 
