@@ -15,6 +15,7 @@ spec:
         app: restaurantapp
     spec:
       containers:
+<<<<<<< HEAD
       - name: restaurantapp
         image: vipskuttu/restaurant-service:2
         imagePullPolicy: Always
@@ -36,6 +37,29 @@ spec:
             configMapKeyRef:
               name: configmap
               key: restaurantdb_url
+=======
+        - name: restaurantapp
+          image: vipskuttu/restaurant-listing-service:2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: mysql-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: mysql-password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: restaurantdb_url
+>>>>>>> 7254f97e97d244abc3426240c31323eec38df6ea
 ---
 apiVersion: v1
 kind: Service
